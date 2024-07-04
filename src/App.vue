@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <router-link v-if="!isLoginPage" class="button" to="/login">Login</router-link>
     <header>
       <h1>TASKS TRACKER</h1>
+      <router-link to="/login">Login</router-link>
+            <router-link to="/signup">Signup</router-link>
     </header>
     <router-view></router-view>
   </div>
@@ -11,20 +12,6 @@
 <script>
 export default {
   name: "App",
-  data() {
-    return {
-      isLoginPage: false,
-    };
-  },
-  created() {
-    // Check if current route is login page
-    this.isLoginPage = this.$route.path === '/login';
-    // Listen to route changes to update isLoginPage status
-    this.$router.beforeEach((to, from, next) => {
-      this.isLoginPage = to.path === '/login';
-      next();
-    });
-  },
 };
 </script>
 
@@ -51,7 +38,7 @@ header h1 {
   margin: 0;
 }
 
-.button {
+header a {
   text-decoration: none;
   color: #333;
   padding: 8px 12px;
@@ -60,7 +47,7 @@ header h1 {
   transition: background-color 0.3s ease;
 }
 
-.button {
+header a:hover {
   background-color: #e0e0e0;
 }
 </style>
